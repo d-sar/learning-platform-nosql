@@ -57,6 +57,7 @@ async function createCourse(req, res) {
 }
 
 // Récupérer un cours par son ID
+// Récupérer un cours par son ID
 async function getCourse(req, res) {
   try {
     const { id } = req.params;
@@ -67,18 +68,17 @@ async function getCourse(req, res) {
     }
 
     // Récupérer le cours avec l'ID validé
-    const course = await courseService.findOneById('courses', id);
+    const course = await mongoService.findOneById('courses', id);
 
     if (!course) {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-  
-
+    // Réponse réussie avec les détails du cours
     res.status(200).json(course);
   } catch (error) {
     console.error('Error retrieving course:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Internal server error', details: error.message });
   }
 }
 

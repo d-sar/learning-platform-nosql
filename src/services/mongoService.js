@@ -15,11 +15,19 @@ async function insertOne(collectionName, document) {
 }
 
 // Recherche d'un document par ID
+// Recherche d'un document par ID
+
+
+// Recherche d'un document par ID
 async function findOneById(collectionName, id) {
-  const dbClient = await db.getMongoClient();
-  const dbInstance = dbClient.db(db.mongodb.dbName);
-  // Assurez-vous d'utiliser ObjectId pour la recherche
-  return await dbInstance.collection(collectionName).findOne({ _id: ObjectId(id) });
+  try {
+    const dbInstance = db.getMongoDb();  // Utilisez la fonction getMongoDb pour obtenir l'instance DB
+    // Utilisez 'new ObjectId(id)' pour créer une instance d'ObjectId
+    return await dbInstance.collection(collectionName).findOne({ _id: new ObjectId(id) });
+  } catch (error) {
+    console.error('❌ Error during MongoDB findOne:', error);
+    throw error;
+  }
 }
 
 
