@@ -29,10 +29,36 @@ async function findOneById(collectionName, id) {
     throw error;
   }
 }
+// Nouvelle méthode pour récupérer les statistiques des cours
+async function getCourseStats() {
+  try {
+    const dbInstance = db.getMongoDb();
+    const totalCourses = await dbInstance.collection('courses').countDocuments();
+    const averageDuration = await dbInstance.collection('courses').aggregate([
+      {
+        $group: {
+          _id: null,
+          avgDuration: { $avg: "$duration" }
+        }
+      }
+    ]).toArray();
+
+    return {
+      totalCourses,
+      averageDuration: averageDuration.length > 0 ? averageDuration[0].avgDuration : 0,
+    };
+  } catch (error) {
+    console.error('❌ Error during MongoDB getCourseStats:', error);
+    throw error;
+  }
+}
+
+
 
 
 module.exports = {
   insertOne,
   findOneById,
+  getCourseStats,
 
 };

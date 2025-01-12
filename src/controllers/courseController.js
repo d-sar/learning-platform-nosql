@@ -56,7 +56,7 @@ async function createCourse(req, res) {
   }
 }
 
-// Récupérer un cours par son ID
+
 // Récupérer un cours par son ID
 async function getCourse(req, res) {
   try {
@@ -82,10 +82,21 @@ async function getCourse(req, res) {
   }
 }
 
+// Récupérer les statistiques des cours
+async function getCourseStats(req, res) {
+  try {
+    const stats = await mongoService.getCourseStats();
+    res.status(200).json(stats);
+  } catch (error) {
+    console.error('Error retrieving course statistics:', error);
+    res.status(500).json({ message: 'Internal server error', details: error.message });
+  }
+}
 
 // Export des contrôleurs
 module.exports = {
   createCourse,
   getCourse,
+  getCourseStats,
 
 };
