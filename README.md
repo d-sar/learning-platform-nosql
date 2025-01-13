@@ -15,3 +15,5 @@ Choix techniques :
 Utilisation de MongoDB et Redis pour leur complémentarité (NoSQL + cache).
 Séparation des responsabilités dans des modules dédiés.
 Gestion centralisée des erreurs et des connexions.
+
+![Capture d'écran 2025-01-12 212828](https://github.com/user-attachments/assets/579404cc-7018-4f0c-a861-2c9457f7c426)
