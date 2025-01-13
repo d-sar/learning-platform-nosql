@@ -1,9 +1,9 @@
 
 
 
-Installation et lancement /n
+Installation et lancement  : 
 npm install
-npm start
+npm start 
 
 Structure du projet :
 db.js : Gère les connexions aux bases de données MongoDB et Redis.
