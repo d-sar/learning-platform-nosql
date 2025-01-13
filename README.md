@@ -1,7 +1,7 @@
 
 
 
-Installation et lancement :
+Installation et lancement /n
 npm install
 npm start
 
